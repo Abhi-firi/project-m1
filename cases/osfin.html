@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent hypothetical case study: how Abhishek Sharma would build a repeatable enterprise customer acquisition engine for Osfin across BFSI.">
+<meta name="theme-color" content="#080b12">
+<title>Case Study — Enterprise Acquisition Engine for Osfin | Abhishek Sharma</title>
+<style>
+:root{
+  --cream:#FAF9F2; --ink:#161A33; --slate:#5C6180; --line:rgba(19,27,65,.12);
+  --navy:#131B41; --navy-panel:#1B2454; --text-dark:#F6F6F1; --slate-dark:#AEB3D4; --line-dark:rgba(246,246,241,.14);
+  --yellow:#E8ED6C; --yellow-ink:#6B6E16;
+  --shadow:0 14px 40px rgba(19,27,65,.08); --r:18px; --max:820px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;letter-spacing:-.003em}
+a{color:inherit}
+.wrap{width:min(calc(100% - 48px),var(--max));margin:auto}
+
+.nav{position:sticky;top:0;z-index:30;background:rgba(19,27,65,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line-dark);color:var(--text-dark)}
+.navin{width:min(calc(100% - 48px),1180px);margin:auto;height:72px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;letter-spacing:-.01em;text-decoration:none}.brand span{color:var(--yellow)}
+.back{font-size:13.5px;font-weight:700;color:var(--yellow);text-decoration:none;display:flex;align-items:center;gap:6px}
+.back:hover{color:var(--text-dark)}
+
+.hero{background:var(--navy);color:var(--text-dark);padding:64px 0 54px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.045;mix-blend-mode:overlay;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>')}
+.hero .wrap{position:relative}
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tag{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);border:1px solid var(--line-dark);padding:6px 11px;border-radius:999px}
+.tag.type{color:var(--navy);background:var(--yellow);border-color:var(--yellow)}
+.hero h1{font-size:clamp(28px,4.4vw,42px);line-height:1.12;letter-spacing:-.03em;font-weight:800;margin:0 0 16px;max-width:720px}
+.hero .meta{color:var(--slate-dark);font-size:14.5px;max-width:680px}
+
+.callout{background:#fff;border:1.5px solid var(--yellow-ink);border-left:5px solid var(--yellow-ink);border-radius:12px;padding:20px 22px;margin:36px 0;box-shadow:var(--shadow)}
+.callout b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--yellow-ink);margin-bottom:8px}
+.callout p{margin:0 0 8px;font-size:14.5px;color:var(--slate)}
+.callout p:last-child{margin-bottom:0}
+.callout strong{color:var(--ink)}
+
+.article{padding:54px 0 90px}
+.article h2{font-size:clamp(22px,3vw,28px);font-weight:800;letter-spacing:-.02em;margin:54px 0 10px;color:var(--navy);scroll-margin-top:90px}
+.article h2 .no{color:var(--yellow-ink);margin-right:10px}
+.article h3{font-size:16.5px;font-weight:750;margin:26px 0 10px;color:var(--ink)}
+.article p{margin:0 0 14px;color:#2a2f4d;font-size:15.5px}
+.article ul,.article ol{margin:0 0 16px;padding-left:22px;color:#2a2f4d;font-size:15.5px}
+.article li{margin-bottom:6px}
+.article hr{border:none;border-top:1px solid var(--line);margin:40px 0}
+
+.formula{background:var(--navy);color:var(--text-dark);border-radius:12px;padding:18px 20px;margin:18px 0;font-size:14.5px;font-weight:600;overflow-x:auto;white-space:nowrap}
+.formula .result{color:var(--yellow)}
+
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
+th{background:var(--navy-panel);color:var(--text-dark);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:800}
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right}
+.scrollx{overflow-x:auto}
+
+.principle{background:var(--navy-panel);color:var(--text-dark);border-radius:14px;padding:20px 22px;margin:20px 0}
+.principle b{color:var(--yellow)}
+
+.refs{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-top:10px}
+.refs ol{margin:0;padding-left:20px}
+.refs a{color:var(--navy);font-weight:600;text-decoration:underline;text-decoration-color:var(--line)}
+
+.closing-note{font-style:italic;color:var(--slate);font-size:14px;border-top:1px solid var(--line);padding-top:20px;margin-top:30px}
+
+.cta-footer{background:var(--navy);color:var(--text-dark);padding:50px 0;text-align:center}
+.cta-footer h3{font-size:20px;margin:0 0 10px;font-weight:800}
+.cta-footer p{color:var(--slate-dark);margin:0 0 20px;font-size:14.5px}
+.cta-footer a.btn{display:inline-flex;background:var(--yellow);color:var(--navy);font-weight:800;font-size:14px;padding:13px 24px;border-radius:12px;text-decoration:none}
+
+@media (max-width:640px){.formula{white-space:normal}}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="navin">
+  <a class="brand" href="../index.html">ABHISHEK <span>SHARMA</span></a>
+  <a class="back" href="../index.html#cases">← Back to portfolio</a>
+</div></header>
+
+<section class="hero">
+<div class="wrap">
+  <div class="tagrow">
+    <span class="tag type">Independent hypothetical strategy</span>
+    <span class="tag">BFSI Enterprise Sales</span>
+    <span class="tag">Go-to-Market Strategy</span>
+    <span class="tag">Account-Based Marketing</span>
+    <span class="tag">Pipeline Generation</span>
+  </div>
+  <h1>How I Would Build a Repeatable Enterprise Customer Acquisition Engine for Osfin</h1>
+  <p class="meta">Case study 1 of 6 in my "Proof of Thinking" series — demonstrating how I reason through growth problems using real frameworks, disclosed assumptions and no fabricated data.</p>
+</div>
+</section>
+
+<div class="article">
+<div class="wrap">
+
+<div class="callout">
+<b>Important Disclaimer</b>
+<p>This is an <strong>independent hypothetical case study</strong> based on publicly available information about Osfin and general BFSI enterprise go-to-market principles. It is <strong>not affiliated with Osfin</strong> and does not use its internal sales, pipeline or customer data.</p>
+<p><strong>The 100-customer goal, the 24-month timeframe, account counts, scoring rules, funnel assumptions, conversion rates and proposed actions are illustrative. They are not Osfin's actual targets, internal metrics or reported results.</strong></p>
+</div>
+
+<h2><span class="no">01</span>Company Context: What Does Osfin Do?</h2>
+<p>Osfin is a financial operations automation platform. Its software helps financial institutions reconcile transactions across systems, identify mismatches, improve cash-flow visibility and automate complex financial workflows.</p>
+<p>Its publicly described capabilities include:</p>
+<ul>
+  <li><strong>Reconciliation automation:</strong> Matching records across banks, payment systems, ledgers and other sources.</li>
+  <li><strong>Payments and payouts:</strong> Improving the accuracy and efficiency of payment operations.</li>
+  <li><strong>Exception management:</strong> Identifying and managing transaction mismatches.</li>
+  <li><strong>Financial visibility:</strong> Reporting and audit trails that help finance and operations teams investigate discrepancies.</li>
+</ul>
+<p>Osfin's website describes 170+ integrations and publishes case studies involving banking, card reconciliation and ATM operations. Any specific certification or compliance claim should be verified against current documentation before being used in a sales pitch.</p>
+<p><em>Public references: <a href="https://www.osfin.ai/" target="_blank" rel="noopener">Osfin — Official Website</a> · <a href="https://www.osfin.ai/solutions/banking" target="_blank" rel="noopener">Osfin — Banking Solutions</a> · <a href="https://www.osfin.ai/case-study" target="_blank" rel="noopener">Osfin — Customer Case Studies</a></em></p>
+
+<h3>Scope of this case study</h3>
+<p>Although Osfin's public website mentions multiple industries, <strong>this strategy deliberately focuses only on BFSI: Banking, Financial Services and Insurance.</strong></p>
+<p>The target market includes banks, NBFCs, insurers and relevant fintech or payments businesses operating in financial services. The primary goal is to build a repeatable system for acquiring enterprise customers, rather than relying only on founder-led selling.</p>
+
+<hr>
+
+<h2><span class="no">02</span>The Hypothetical Business Problem</h2>
+<p>Imagine that Osfin wants to expand its enterprise customer base across the BFSI sector.</p>
+<p>The company has relevant product capabilities and publicly documented customer use cases. However, for this case study, assume that its enterprise acquisition process is not yet sufficiently repeatable and that too much selling depends on founders or individual relationships.</p>
+<p>This is a hypothetical scenario, not a claim about Osfin's actual sales process.</p>
+
+<h3>The business challenge</h3>
+<p>Large financial institutions can have complex buying processes. A potential customer may need to evaluate business value, technical integration, information security, compliance, procurement and budget before signing a contract.</p>
+<p>Therefore, generating leads is not enough. Osfin needs a structured approach to identify the right accounts, reach the right stakeholders, establish credibility and move qualified opportunities through the buying process.</p>
+
+<h3>The central question</h3>
+<p><strong>How would I build a repeatable go-to-market system that helps Osfin acquire 100 new BFSI enterprise customers over 24 months, while creating measurable progress in the first 90 days?</strong></p>
+<p>The target of 100 customers is hypothetical. I would first test whether it is achievable based on Osfin's average contract value, sales-cycle length, team capacity and conversion rates.</p>
+
+<hr>
+
+<h2><span class="no">03</span>Define the Ideal Customer Profile (ICP)</h2>
+<p>I would not target every bank, NBFC, insurer or fintech equally. I would prioritise organisations where Osfin's capabilities align with a clear operational problem.</p>
+
+<h3>Initial ICP</h3>
+<div class="scrollx"><table>
+<tr><th>Segment</th><th>Potential customer problem</th></tr>
+<tr><td>Banks</td><td>High-volume card, deposit, payment or ledger reconciliation</td></tr>
+<tr><td>NBFCs</td><td>Matching loan disbursements, repayments and ledger entries</td></tr>
+<tr><td>Insurers</td><td>Reconciling premium collections, commissions, settlements or payouts</td></tr>
+<tr><td>Payments and fintech firms</td><td>Matching transactions across payment rails, gateways and internal ledgers</td></tr>
+</table></div>
+<p>These are potential use cases to validate account by account, not claims that every organisation in a segment has the same problem.</p>
+
+<h3>Account qualification criteria</h3>
+<p>I would evaluate each account against five questions:</p>
+<ol>
+  <li><strong>Volume:</strong> Does it process a meaningful volume of complex financial transactions?</li>
+  <li><strong>Complexity:</strong> Does it reconcile data across multiple systems or sources?</li>
+  <li><strong>Pain:</strong> Is there evidence of manual effort, delayed reconciliation, unresolved exceptions or operational risk?</li>
+  <li><strong>Readiness:</strong> Is there a relevant project, leadership priority, system change or budget cycle?</li>
+  <li><strong>Feasibility:</strong> Can Osfin realistically meet the account's integration, security and procurement requirements?</li>
+</ol>
+
+<h3>Framework: ICP score</h3>
+<p>I would score each criterion from 1 to 5.</p>
+<div class="formula">Account score = Volume + Complexity + Pain + Readiness + Feasibility <span class="result">(max 25)</span></div>
+<p>For the initial model:</p>
+<ul>
+  <li><strong>20–25:</strong> Tier 1 — high-priority accounts.</li>
+  <li><strong>15–19:</strong> Tier 2 — develop and qualify further.</li>
+  <li><strong>Below 15:</strong> Tier 3 — nurture or deprioritise.</li>
+</ul>
+<p>These thresholds are proposed operating rules, not industry benchmarks. I would recalibrate them using actual conversion data.</p>
+<div class="principle">The purpose is simple: <b>spend the most sales effort on accounts that have both a strong problem and a realistic path to buying.</b></div>
+
+<hr>
+
+<h2><span class="no">04</span>Choose the Right Market Segment First</h2>
+<p>I would not try to penetrate every BFSI segment at once. Instead, I would compare banks, NBFCs, insurers and fintech/payment firms using five factors: severity of the problem, strength of evidence for product fit, access to relevant decision-makers, sales-cycle and procurement complexity, and potential contract value.</p>
+<p>I would also examine Osfin's public case studies and reference customers to understand which use cases already have the strongest proof points.</p>
+
+<h3>Framework: Weighted segment score</h3>
+<div class="formula">Segment score = Σ (Factor score × Factor weight)</div>
+<p>For example, problem severity might receive a 30% weight, product fit 25%, referenceability 20%, buying accessibility 15% and sales-cycle feasibility 10%. The weights are illustrative and must be validated with the business.</p>
+<div class="principle"><b>Decision rule:</b> Start with one primary segment and one backup segment. Expand only after the first segment produces repeatable qualified opportunities.</div>
+
+<hr>
+
+<h2><span class="no">05</span>Build a Target Account List</h2>
+<p>Once the initial segment is selected, I would build a focused account list rather than conducting random outreach.</p>
+
+<h3>First 90-day target</h3>
+<p>Create a list of <strong>30 priority BFSI accounts</strong>:</p>
+<ul>
+  <li><strong>Tier 1 — 10 accounts:</strong> Strong fit, clear business pain and identifiable buying stakeholders.</li>
+  <li><strong>Tier 2 — 10 accounts:</strong> Good potential, but some qualification is still required.</li>
+  <li><strong>Tier 3 — 10 accounts:</strong> Strategic accounts that need longer-term relationship building.</li>
+</ul>
+<p>These counts are hypothetical planning assumptions.</p>
+
+<h3>Where would I find account signals?</h3>
+<p>I would use publicly available and legitimate sources, including company announcements and annual reports, official websites and leadership updates, public information about expansion or acquisitions, relevant job postings, industry conferences and professional networks, and existing CRM records, referrals and introductions.</p>
+<p>A signal is useful only when it connects to a plausible business need. A company announcing expansion, for example, does not automatically mean it needs reconciliation software.</p>
+
+<h3>Account research template</h3>
+<div class="scrollx"><table>
+<tr><th>Field</th><th>Purpose</th></tr>
+<tr><td>Company and BFSI segment</td><td>Identify the target</td></tr>
+<tr><td>Likely operational problem</td><td>Establish the reason to engage</td></tr>
+<tr><td>Public trigger or evidence</td><td>Explain why the timing may be relevant</td></tr>
+<tr><td>Relevant Osfin use case</td><td>Connect the problem to the product</td></tr>
+<tr><td>Economic buyer</td><td>Identify who owns the business outcome</td></tr>
+<tr><td>Technical and risk stakeholders</td><td>Understand evaluation requirements</td></tr>
+<tr><td>Current relationship</td><td>Track warm introductions and prior engagement</td></tr>
+<tr><td>Next action</td><td>Ensure every account has a clear follow-up</td></tr>
+</table></div>
+<p><strong>Output:</strong> A prioritised, evidence-based account list that a small sales team can actually execute.</p>
+
+<hr>
+
+<h2><span class="no">06</span>Map the Buying Committee</h2>
+<p>In enterprise BFSI sales, one interested contact is rarely enough. I would map the people who experience the problem, approve the investment and assess the risks.</p>
+<div class="scrollx"><table>
+<tr><th>Stakeholder</th><th>What they care about</th><th>Message to test</th></tr>
+<tr><td>CFO / Finance leadership</td><td>Financial control, efficiency and measurable ROI</td><td>Quantify operational cost and potential revenue leakage</td></tr>
+<tr><td>Head of Operations / Reconciliation</td><td>Faster processing and fewer manual exceptions</td><td>Show how the workflow could improve</td></tr>
+<tr><td>CIO / CTO / IT</td><td>Integration, reliability and implementation effort</td><td>Explain architecture, integration options and dependencies</td></tr>
+<tr><td>Information Security / Risk / Compliance</td><td>Data protection, access controls and auditability</td><td>Provide verified security documentation and answer the review process</td></tr>
+<tr><td>Procurement</td><td>Commercial terms, vendor risk and contractual requirements</td><td>Provide clear scope, pricing and required documentation</td></tr>
+</table></div>
+<p>The actual buying committee will vary by institution.</p>
+<div class="principle">I would first identify the business owner of the problem, then involve technical, security and procurement stakeholders at the appropriate stage. <b>The goal is to understand the business problem, build internal alignment and reduce the friction involved in evaluating a new vendor.</b></div>
+
+<hr>
+
+<h2><span class="no">07</span>Design a Multi-Channel Go-to-Market Strategy</h2>
+<p>I would use three acquisition channels, each with a different purpose.</p>
+
+<h3>Channel 1: Account-based outbound</h3>
+<p><strong>Purpose:</strong> Create qualified conversations with priority accounts. My sequence: research the account and a relevant use case, send a personalised email, connect with the appropriate stakeholder on LinkedIn, follow up with a useful observation or public case study, call where appropriate, and offer a short discovery conversation.</p>
+<p>I would personalise the business problem, not just the recipient's name. Example (illustrative, not a claim about the recipient's actual operations):</p>
+<p style="font-style:italic;color:var(--slate)">"Your team may be managing complex reconciliation across multiple financial systems. I'd be interested in understanding how you currently handle exceptions and whether automation is a priority. Would a short conversation be useful?"</p>
+
+<h3>Channel 2: Partnerships</h3>
+<p>I would explore potential referral or implementation partnerships with banking technology providers, core banking and financial software implementation partners, system integrators serving BFSI institutions, and specialist consultants involved in financial operations transformation. I would validate willingness to partner and commercial value before investing heavily.</p>
+
+<h3>Channel 3: Industry-led demand generation</h3>
+<p>I would identify BFSI events, professional communities and focused roundtables, testing specific topics such as reducing manual reconciliation effort, improving exception visibility, modernising reconciliation workflows and measuring the business case for financial operations automation.</p>
+<p>I would compare qualified opportunities, cost, time to first meeting, sales-cycle progression and eventual wins across channels — not declare a channel successful simply because it generates the most leads.</p>
+
+<hr>
+
+<h2><span class="no">08</span>Create a Repeatable Enterprise Sales Process</h2>
+<p>Every qualified account should move through a clearly defined funnel:</p>
+<p style="font-weight:700;color:var(--navy)">Target account → Engaged account → Discovery completed → Qualified opportunity → Demo / solution evaluation → Security and technical review → Commercial / procurement → Closed-won</p>
+<p>Not every account will progress through every stage, and some stages may overlap.</p>
+
+<h3>Qualification framework: MEDDPICC-inspired</h3>
+<p>For larger, complex deals, I would adapt relevant parts of MEDDPICC:</p>
+<ul>
+  <li><strong>Metrics:</strong> What measurable business outcome does the buyer want?</li>
+  <li><strong>Economic buyer:</strong> Who can approve the investment?</li>
+  <li><strong>Decision criteria:</strong> What must the solution demonstrate?</li>
+  <li><strong>Decision process:</strong> How will the customer evaluate and select a vendor?</li>
+  <li><strong>Pain:</strong> What operational problem makes change worthwhile?</li>
+  <li><strong>Champion:</strong> Is there an internal stakeholder willing and able to support the initiative?</li>
+  <li><strong>Competition:</strong> What alternatives, including the current process, are being considered?</li>
+</ul>
+<p>I would not treat an enthusiastic demo attendee as a qualified enterprise opportunity unless the business need, stakeholder access, buying process and next step are sufficiently clear.</p>
+
+<h3>CRM discipline</h3>
+<p>Every active opportunity should have an owner, a defined stage, a next action and date, a business problem, key stakeholders, expected contract value with a confidence level, known risks and blockers, and an estimated close date that is regularly reviewed.</p>
+
+<hr>
+
+<h2><span class="no">09</span>Build the Revenue and Pipeline Model</h2>
+<p>The goal is not to create activity for its own sake. The goal is to create enough qualified pipeline to support the customer-acquisition target.</p>
+
+<h3>Formula 1: Required wins</h3>
+<div class="formula">Required monthly wins = Target wins ÷ Number of months</div>
+<p>For a hypothetical goal of 100 new customers over 24 months: 100 ÷ 24 = <strong>4.17 wins per month on average</strong>. This is only an average — enterprise sales are unlikely to produce a perfectly even monthly pattern, especially early on.</p>
+
+<h3>Formula 2: Required qualified opportunities</h3>
+<div class="formula">Required opportunities = Target wins ÷ Qualified-opportunity win rate</div>
+<p>Suppose the hypothetical win rate is 20%: 100 ÷ 20% = <strong>500 qualified opportunities</strong> over 24 months. This does not mean Osfin must immediately generate 500 opportunities — the real number depends on actual win rate, sales capacity, account overlap and time available for opportunities to close.</p>
+
+<h3>Formula 3: Required pipeline value</h3>
+<div class="formula">Pipeline coverage = Qualified pipeline value ÷ Target bookings</div>
+<p>Suppose the business needs $1 million in bookings and has $4 million in qualified pipeline: $4M ÷ $1M = <strong>4× coverage</strong>. This ratio is illustrative, not a universal benchmark — the appropriate ratio depends on actual win rates, deal sizes, sales-cycle timing and CRM-stage reliability.</p>
+
+<h3>Formula 4: Funnel conversion</h3>
+<div class="formula">Stage conversion rate = Opportunities entering next stage ÷ Opportunities entering previous stage × 100</div>
+<p>For example, if 20 out of 50 discovery meetings become qualified opportunities: 20 ÷ 50 × 100 = <strong>40% conversion</strong>. Tracking conversion between stages reveals where the sales process is losing momentum.</p>
+
+<h3>The commercial reality</h3>
+<p>Before committing to 100 wins, I would verify average contract value, actual stage-by-stage conversion, average sales-cycle length, number of enterprise sellers available, implementation and customer-success capacity, and revenue and margin expectations. If these inputs cannot support the target, I would recommend a revised target or a phased plan rather than promising an unsupported outcome.</p>
+
+<hr>
+
+<h2><span class="no">10</span>The First 90 Days: Execution Plan</h2>
+<p>The first 90 days should validate the go-to-market model and produce early evidence — not be judged solely on closed revenue, particularly given long sales cycles.</p>
+<div class="scrollx"><table>
+<tr><th>Period</th><th>Key actions</th><th>Deliverables</th></tr>
+<tr><td>Days 1–30<br><em>Research and prioritisation</em></td><td>Review references and CRM data; interview internal stakeholders; compare BFSI segments; build and score 30 target accounts; map decision-makers; define funnel stages</td><td>Prioritised segment, 30-account list, stakeholder maps, initial messaging, CRM dashboard</td></tr>
+<tr><td>Days 31–60<br><em>Launch and learn</em></td><td>Start outbound to top accounts; test message angles; begin discovery; develop discovery checklist and demo narrative; identify partners; log objections</td><td>Initial meeting/qualification data, objection log, evidence on winning use cases, repeatable outreach process</td></tr>
+<tr><td>Days 61–90<br><em>Improve and systemise</em></td><td>Compare segment and message performance; identify funnel drop-off; advance deals into technical/security review; test partner introductions; present risks to leadership</td><td>Refined ICP, funnel-conversion report, qualified opportunity list, scale/revise/stop recommendation</td></tr>
+</table></div>
+
+<h3>Ownership</h3>
+<p>Founders could continue supporting strategic relationships and high-value negotiations while the broader team handles research, qualification, follow-up and pipeline management through a defined system.</p>
+
+<hr>
+
+<h2><span class="no">11</span>90-Day Success Metrics</h2>
+<p>I would separate <strong>activity, pipeline progress and revenue outcomes</strong>.</p>
+<div class="scrollx"><table>
+<tr><th>Metric</th><th>What it measures</th></tr>
+<tr><td>Priority accounts researched</td><td>Quality of target-account preparation</td></tr>
+<tr><td>Relevant stakeholders mapped</td><td>Access to the buying committee</td></tr>
+<tr><td>Positive engagement rate</td><td>Whether the message creates meaningful interest</td></tr>
+<tr><td>Discovery meetings completed</td><td>Whether outreach generates conversations</td></tr>
+<tr><td>Qualified opportunities created</td><td>Whether conversations reveal real buying potential</td></tr>
+<tr><td>Demo-to-next-stage conversion</td><td>Whether the solution fits the identified problem</td></tr>
+<tr><td>Security / technical reviews started</td><td>Whether opportunities progress through enterprise evaluation</td></tr>
+<tr><td>Qualified pipeline value</td><td>Potential commercial value, using documented assumptions</td></tr>
+<tr><td>Closed-won customers</td><td>Actual new customer acquisition</td></tr>
+</table></div>
+<p><strong>Positive engagement rate</strong> = Accounts with meaningful positive engagement ÷ Accounts contacted × 100<br>
+<strong>Meeting conversion rate</strong> = Meetings booked ÷ Accounts contacted × 100<br>
+<strong>Qualified-opportunity rate</strong> = Qualified opportunities ÷ Meetings completed × 100<br>
+<strong>Win rate</strong> = Closed-won opportunities ÷ Closed opportunities × 100</p>
+<p>I would not invent universal meeting targets in the first 90 days. I would use the first weeks to establish a baseline, then set weekly and monthly targets based on actual team capacity and conversion data.</p>
+
+<hr>
+
+<h2><span class="no">12</span>Risks and Mitigation</h2>
+<div class="scrollx"><table>
+<tr><th>Risk</th><th>My response</th></tr>
+<tr><td>Target accounts have no urgent problem</td><td>Improve qualification and change the target segment.</td></tr>
+<tr><td>Outreach generates interest but few qualified deals</td><td>Revisit the message, use case and discovery process.</td></tr>
+<tr><td>Technical or security review stalls</td><td>Identify requirements early and involve technical stakeholders before late sales stages.</td></tr>
+<tr><td>Buyers require stronger proof</td><td>Use relevant, verified references and measurable use cases where permission allows.</td></tr>
+<tr><td>Deals depend on one relationship</td><td>Build relationships across the buying committee.</td></tr>
+<tr><td>Sales cycles exceed expectations</td><td>Improve pipeline visibility and forecast by stage, not by optimism.</td></tr>
+<tr><td>Team pursues too many segments</td><td>Concentrate resources on the strongest validated segment.</td></tr>
+<tr><td>The 100-customer goal exceeds capacity</td><td>Recalculate using actual win rates, deal sizes, capacity and implementation constraints.</td></tr>
+</table></div>
+
+<hr>
+
+<h2><span class="no">13</span>Reducing Founder Dependency</h2>
+<p>The objective is not to remove founders from strategic deals — their credibility and relationships may remain valuable. The objective is to make the <strong>process repeatable even when founders are not personally leading every interaction</strong>.</p>
+<p>I would document and standardise: ICP and account-prioritisation criteria; account research and stakeholder mapping; outreach sequences and discovery questions; qualification and opportunity-stage definitions; demo preparation and business-case templates; security-review and procurement checklists; CRM hygiene, pipeline reviews and forecasting; and learnings from wins, losses and stalled deals.</p>
+<div class="principle">This is how individual sales effort can gradually become an <b>organisational capability.</b></div>
+
+<hr>
+
+<h2><span class="no">14</span>Final Recommendation</h2>
+<p>I would not begin by trying to sell to every bank, NBFC, insurer and fintech simultaneously.</p>
+<p>I would first identify the BFSI segment with the strongest combination of customer pain, product fit, referenceability and buying feasibility. Then I would build a prioritised account list, map the buying committee, run focused multi-channel outreach and establish a measurable enterprise sales funnel.</p>
+<p>The first 90 days would be used to validate the ICP, messaging, channel performance and opportunity quality. Over time, actual conversion rates, contract values, sales-cycle data and team capacity would determine whether the 100-customer goal is achievable and what investment it requires.</p>
+
+<div class="principle" style="text-align:center;font-size:16px;padding:26px 24px">
+<b>The growth system:</b><br><br>
+Select the segment → Prioritise accounts → Map stakeholders → Establish customer pain → Generate qualified opportunities → Navigate enterprise evaluation → Close and learn → Standardise the process
+</div>
+
+<p>My objective would be to help Osfin build a repeatable, evidence-led BFSI customer acquisition engine — one that creates a stronger pipeline, improves sales visibility and reduces reliance on individual relationships.</p>
+
+<div class="refs">
+<b style="display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--yellow-ink);margin-bottom:10px">References</b>
+<ol>
+  <li><a href="https://www.osfin.ai/" target="_blank" rel="noopener">Osfin — Official Website</a></li>
+  <li><a href="https://www.osfin.ai/solutions/banking" target="_blank" rel="noopener">Osfin — Banking Solutions</a></li>
+  <li><a href="https://www.osfin.ai/case-study" target="_blank" rel="noopener">Osfin — Customer Case Studies</a></li>
+  <li><a href="https://in.linkedin.com/jobs/view/sales-development-representative-at-osfin-ai-4471389392" target="_blank" rel="noopener">Osfin — Sales Development Representative Role</a></li>
+</ol>
+</div>
+
+<p class="closing-note">This is an independent hypothetical case study. The 100-customer goal, 24-month timeframe, account counts, scoring rules, funnel assumptions, conversion rates, pipeline values and proposed actions are illustrative. They are not Osfin's actual targets, internal metrics or reported results. Public product information is referenced separately above.</p>
+
+</div>
+</div>
+
+<section class="cta-footer">
+<div class="wrap">
+  <h3>Give me a problem like this one.</h3>
+  <p>This is how I think through a GTM problem end to end — ICP, segment, funnel math and a 90-day plan, all shown.</p>
+  <a class="btn" href="../index.html#contact">Let's talk →</a>
+</div>
+</section>
+
+</body>
+</html>

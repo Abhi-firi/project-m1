@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent hypothetical case study: how Abhishek Sharma would build a predictable sales pipeline and forecasting engine for Razorpay.">
+<meta name="theme-color" content="#080b12">
+<title>Case Study — Pipeline & Forecasting Engine for Razorpay | Abhishek Sharma</title>
+<style>
+:root{
+  --cream:#FAF9F2; --ink:#161A33; --slate:#5C6180; --line:rgba(19,27,65,.12);
+  --navy:#131B41; --navy-panel:#1B2454; --text-dark:#F6F6F1; --slate-dark:#AEB3D4; --line-dark:rgba(246,246,241,.14);
+  --yellow:#E8ED6C; --yellow-ink:#6B6E16;
+  --shadow:0 14px 40px rgba(19,27,65,.08); --r:18px; --max:820px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;letter-spacing:-.003em}
+a{color:inherit}
+.wrap{width:min(calc(100% - 48px),var(--max));margin:auto}
+
+.nav{position:sticky;top:0;z-index:30;background:rgba(19,27,65,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line-dark);color:var(--text-dark)}
+.navin{width:min(calc(100% - 48px),1180px);margin:auto;height:72px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;letter-spacing:-.01em;text-decoration:none}.brand span{color:var(--yellow)}
+.back{font-size:13.5px;font-weight:700;color:var(--yellow);text-decoration:none;display:flex;align-items:center;gap:6px}
+.back:hover{color:var(--text-dark)}
+
+.hero{background:var(--navy);color:var(--text-dark);padding:64px 0 54px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.045;mix-blend-mode:overlay;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>')}
+.hero .wrap{position:relative}
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tag{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);border:1px solid var(--line-dark);padding:6px 11px;border-radius:999px}
+.tag.type{color:var(--navy);background:var(--yellow);border-color:var(--yellow)}
+.hero h1{font-size:clamp(28px,4.4vw,42px);line-height:1.12;letter-spacing:-.03em;font-weight:800;margin:0 0 16px;max-width:720px}
+.hero .meta{color:var(--slate-dark);font-size:14.5px;max-width:680px}
+
+.callout{background:#fff;border:1.5px solid var(--yellow-ink);border-left:5px solid var(--yellow-ink);border-radius:12px;padding:20px 22px;margin:36px 0;box-shadow:var(--shadow)}
+.callout b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--yellow-ink);margin-bottom:8px}
+.callout p{margin:0 0 8px;font-size:14.5px;color:var(--slate)}
+.callout p:last-child{margin-bottom:0}
+.callout strong{color:var(--ink)}
+
+.article{padding:54px 0 90px}
+.article h2{font-size:clamp(22px,3vw,28px);font-weight:800;letter-spacing:-.02em;margin:54px 0 10px;color:var(--navy);scroll-margin-top:90px}
+.article h2 .no{color:var(--yellow-ink);margin-right:10px}
+.article h3{font-size:16.5px;font-weight:750;margin:26px 0 10px;color:var(--ink)}
+.article p{margin:0 0 14px;color:#2a2f4d;font-size:15.5px}
+.article ul,.article ol{margin:0 0 16px;padding-left:22px;color:#2a2f4d;font-size:15.5px}
+.article li{margin-bottom:6px}
+.article hr{border:none;border-top:1px solid var(--line);margin:40px 0}
+
+.formula{background:var(--navy);color:var(--text-dark);border-radius:12px;padding:18px 20px;margin:18px 0;font-size:14.5px;font-weight:600;overflow-x:auto;white-space:nowrap}
+.formula .result{color:var(--yellow)}
+
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
+th{background:var(--navy-panel);color:var(--text-dark);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:800}
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right}
+.scrollx{overflow-x:auto}
+
+.principle{background:var(--navy-panel);color:var(--text-dark);border-radius:14px;padding:20px 22px;margin:20px 0}
+.principle b{color:var(--yellow)}
+
+.refs{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-top:10px}
+.refs ol{margin:0;padding-left:20px}
+.refs a{color:var(--navy);font-weight:600;text-decoration:underline;text-decoration-color:var(--line)}
+
+.closing-note{font-style:italic;color:var(--slate);font-size:14px;border-top:1px solid var(--line);padding-top:20px;margin-top:30px}
+
+.cta-footer{background:var(--navy);color:var(--text-dark);padding:50px 0;text-align:center}
+.cta-footer h3{font-size:20px;margin:0 0 10px;font-weight:800}
+.cta-footer p{color:var(--slate-dark);margin:0 0 20px;font-size:14.5px}
+.cta-footer a.btn{display:inline-flex;background:var(--yellow);color:var(--navy);font-weight:800;font-size:14px;padding:13px 24px;border-radius:12px;text-decoration:none}
+
+@media (max-width:640px){.formula{white-space:normal}}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="navin">
+  <a class="brand" href="../index.html">ABHISHEK <span>SHARMA</span></a>
+  <a class="back" href="../index.html#cases">← Back to portfolio</a>
+</div></header>
+
+<section class="hero">
+<div class="wrap">
+  <div class="tagrow">
+    <span class="tag type">Independent hypothetical business case</span>
+    <span class="tag">Sales Strategy</span>
+    <span class="tag">Go-to-Market</span>
+    <span class="tag">Funnel Optimization</span>
+    <span class="tag">Revenue Forecasting</span>
+  </div>
+  <h1>How I Would Build a Predictable Sales Pipeline and Forecasting Engine for Razorpay</h1>
+  <p class="meta">Case study 4 of 6 in my "Proof of Thinking" series — demonstrating how I reason through growth problems using real frameworks, disclosed assumptions and no fabricated data.</p>
+</div>
+</section>
+
+<div class="article">
+<div class="wrap">
+
+<div class="callout">
+<b>Important Disclaimer</b>
+<p>This is an <strong>independent hypothetical business case</strong> based on publicly available information about Razorpay and general B2B sales and forecasting principles. It is <strong>not affiliated with Razorpay</strong> and does not use its internal sales, pipeline or merchant data.</p>
+<p><strong>All targets, funnel volumes, conversion rates, forecast figures and merchant-volume scenarios in this case study are hypothetical planning assumptions. They are not Razorpay's actual targets, internal data or forecasts.</strong></p>
+</div>
+
+<h2><span class="no">01</span>Executive Summary</h2>
+<p>A sales team can generate hundreds of leads and still struggle to predict how much business it will close. The underlying problem may not be lead volume alone — it could be poor prospect selection, weak qualification, low conversion between funnel stages, slow follow-ups or forecasts based on optimistic assumptions rather than actual buyer signals.</p>
+<p>In this hypothetical case, I explore how Razorpay could build a more predictable acquisition engine for a selected segment of mid-market Indian businesses.</p>
+<p>My approach connects five activities into one operating system:</p>
+<ol>
+  <li>Identify merchants with strong product fit and meaningful payment-processing potential.</li>
+  <li>Prioritize accounts based on evidence rather than lead volume alone.</li>
+  <li>Track conversion and drop-offs across the sales funnel.</li>
+  <li>Forecast deals using stage evidence, expected close dates and merchant potential.</li>
+  <li>Use weekly performance data to improve sales productivity.</li>
+</ol>
+<p>The proposed initial 90-day pilot targets <strong>eight newly activated merchants</strong>, with an illustrative funnel of 1,000 researched target accounts. These are planning assumptions for this case study, not Razorpay's actual targets, internal data or forecast.</p>
+<p>The goal is not simply to generate more leads. It is to create a sales process where the team can explain where growth will come from, what could prevent it and which actions are most likely to improve the outcome.</p>
+
+<hr>
+
+<h2><span class="no">02</span>Understanding the Business Problem</h2>
+<p>Imagine Razorpay wants to improve new-merchant acquisition in a selected mid-market segment. The sales team has access to a large potential customer base, but management wants a clearer view of which prospects are most likely to activate, how long conversion takes and how much business the pipeline can reasonably deliver.</p>
+<p>For this case, I assume the following challenges need to be investigated:</p>
+<ul>
+  <li>Sales effort is spread across businesses with very different transaction potential.</li>
+  <li>Some leads enter the pipeline without a clearly established business need.</li>
+  <li>Deals move through stages without consistent exit criteria.</li>
+  <li>Follow-ups and technical or commercial discussions sometimes delay decisions.</li>
+  <li>Forecasts may depend too heavily on salespeople's subjective confidence.</li>
+  <li>A signed agreement does not necessarily mean the merchant will immediately generate meaningful payment volume.</li>
+</ul>
+<p>These are <strong>hypotheses to validate</strong>, not claims about Razorpay's actual sales operations.</p>
+
+<h3>The core business question</h3>
+<p><strong>How can Razorpay build a repeatable sales pipeline that converts the right merchants into active customers and makes new-business forecasting more reliable?</strong></p>
+
+<h3>What success should look like</h3>
+<p>The system should help management answer four questions at any point: Are we targeting the right businesses? Is our pipeline large and qualified enough to support the target? Which funnel stage is limiting conversions? How much of the expected business is supported by real evidence?</p>
+
+<hr>
+
+<h2><span class="no">03</span>Define the Ideal Customer Profile (ICP)</h2>
+<p>My first decision would be to avoid targeting every business that accepts digital payments. Instead, I would begin with a defined segment of Indian mid-market businesses that already have digital transactions or a clear near-term need to accept them.</p>
+
+<h3>Initial segments to investigate</h3>
+<p><strong>A. D2C and e-commerce businesses</strong> — smooth checkout experiences, multiple payment methods, better visibility into payment performance.</p>
+<p><strong>B. Education businesses</strong> — collecting course fees, handling recurring payments, simplifying online fee collection.</p>
+<p><strong>C. SaaS businesses</strong> — recurring billing, subscription payments, accepting payments from international customers where supported.</p>
+<p>These use cases align with the kinds of solutions Razorpay publicly offers. Choosing the best segment requires validation using actual conversion, merchant-volume and sales-cycle data.</p>
+
+<h3>ICP scoring model</h3>
+<div class="scrollx"><table>
+<tr><th>Factor</th><th class="num">Weight</th><th>What I would evaluate</th></tr>
+<tr><td>Payment potential</td><td class="num">30%</td><td>Expected transaction volume and growth</td></tr>
+<tr><td>Product fit</td><td class="num">25%</td><td>Match with relevant Razorpay capabilities</td></tr>
+<tr><td>Pain intensity</td><td class="num">20%</td><td>Existing payment, checkout or collection problems</td></tr>
+<tr><td>Buying readiness</td><td class="num">15%</td><td>Clear need, decision-maker access and implementation timing</td></tr>
+<tr><td>Sales feasibility</td><td class="num">10%</td><td>Likely effort, integration complexity and time to activate</td></tr>
+</table></div>
+<div class="formula">Weighted score = Σ (factor score ÷ 5 × factor weight) <span class="result">— out of 100</span></div>
+
+<h3>Illustrative prioritization</h3>
+<ul>
+  <li><strong>Tier 1 — 80–100:</strong> Prioritize for personalized outreach and early discovery.</li>
+  <li><strong>Tier 2 — 60–79:</strong> Run targeted outreach and qualify further.</li>
+  <li><strong>Tier 3 — Below 60:</strong> Use lower-cost nurture or revisit when stronger buying signals appear.</li>
+</ul>
+<p>These thresholds are proposed starting points, not validated benchmarks.</p>
+<div class="principle"><b>My decision:</b> Test D2C/e-commerce and SaaS prospects as separate cohorts rather than committing all resources to one. After the first few weeks, compare qualified-opportunity rates, expected payment potential, activation rates and sales effort before allocating more capacity.</div>
+
+<hr>
+
+<h2><span class="no">04</span>Build a Prioritized Target-Account List</h2>
+<p>A strong ICP is useful only when it translates into a practical prospecting plan. For the first 90 days, I would build a list of <strong>1,000 researched target accounts</strong> across the selected segments — a proposed pilot input, not a claim about market size.</p>
+
+<h3>Information to collect</h3>
+<p>Company name and website, business model and industry, approximate business scale where credible, existing checkout/payment experience, likely payment use case, decision-maker contact details, a specific reason for outreach, ICP score and priority tier, and outreach status/next action/owner.</p>
+
+<h3>Account prioritization signals</h3>
+<p>Higher priority to businesses showing rapid expansion into new products or geographies, launch of a new online sales channel, a subscription/recurring-payment model, a checkout experience that could benefit from improvement, increasing transaction complexity, or a relevant business initiative indicating active need.</p>
+<p>I would distinguish between <strong>verified facts and sales hypotheses</strong>. A new job posting might indicate investment in a function, but would not prove a payment problem exists.</p>
+<div class="principle"><b>Operating rule:</b> Every Tier 1 account must have a reason for being prioritized. A large company name by itself is not sufficient.</div>
+
+<hr>
+
+<h2><span class="no">05</span>Design the Pipeline Generation Strategy</h2>
+<p>I would use three complementary channels rather than relying on a single source of leads.</p>
+
+<h3>Channel 1: Targeted outbound</h3>
+<p>Use account research to contact relevant decision-makers with a message connected to their business model. For e-commerce, explore checkout friction and payment reliability; for SaaS, focus on recurring billing or international payments. The objective of the first conversation is to establish whether a meaningful business problem exists, not to force a product pitch.</p>
+
+<h3>Channel 2: Inbound lead qualification</h3>
+<p>Prioritize using business scale and likely payment volume, stated use case, readiness to integrate, expected implementation timing and product fit. A high number of inbound leads is not automatically a high-quality pipeline — qualification must happen early.</p>
+
+<h3>Channel 3: Partnerships and ecosystem referrals</h3>
+<p>Investigate referral opportunities through e-commerce agencies, implementation partners, SaaS ecosystems and relevant business networks — reaching merchants when they are already making decisions about their digital infrastructure.</p>
+
+<h3>Illustrative channel allocation</h3>
+<div class="scrollx"><table>
+<tr><th>Channel</th><th class="num">Share of target accounts</th></tr>
+<tr><td>Targeted outbound</td><td class="num">60%</td></tr>
+<tr><td>Inbound qualification</td><td class="num">25%</td></tr>
+<tr><td>Partner and referral sourcing</td><td class="num">15%</td></tr>
+</table></div>
+<p>These percentages describe the proposed sourcing mix, not expected conversion rates. I would adjust them based on observed results.</p>
+
+<hr>
+
+<h2><span class="no">06</span>Define the Sales Funnel and Stage Exit Criteria</h2>
+<p>A funnel should show not only where a deal sits, but also what evidence allows it to move forward.</p>
+<div class="scrollx"><table>
+<tr><th>Stage</th><th>Exit criterion</th></tr>
+<tr><td><strong>1. Target account identified</strong> — fits the preliminary ICP and has been sufficiently researched</td><td>A valid prospect and a documented reason to contact them</td></tr>
+<tr><td><strong>2. Meaningfully engaged</strong> — prospect has responded or participated in a relevant conversation</td><td>Two-way engagement or another verified signal of interest</td></tr>
+<tr><td><strong>3. Discovery completed</strong> — business model, payment requirements, setup and decision process understood</td><td>A clear use case and enough information to assess fit</td></tr>
+<tr><td><strong>4. Qualified opportunity</strong> — relevant need, plausible business case, identifiable decision process</td><td>The opportunity meets documented qualification criteria</td></tr>
+<tr><td><strong>5. Solution and technical validation</strong> — product fit, integration and implementation reviewed</td><td>No unresolved critical feasibility issue, with agreed next steps</td></tr>
+<tr><td><strong>6. Commercial proposal</strong> — pricing, commercial conditions and implementation plan communicated</td><td>The proposal has been reviewed, next decision step agreed</td></tr>
+<tr><td><strong>7. Won and activated</strong> — onboarding complete, live payments begin</td><td>The merchant meets the agreed activation definition</td></tr>
+<tr><td><strong>8. Early performance review</strong> — initial payment activity monitored</td><td>Initial performance reviewed against expected use case</td></tr>
+</table></div>
+<p>I would separately record contract/commercial acceptance and activation — a signed deal may not yet represent a live, transacting merchant.</p>
+
+<hr>
+
+<h2><span class="no">07</span>Calculate the Funnel Backwards from the Target</h2>
+<p>I would start with the desired business outcome and calculate the activity required to support it. For this case, the proposed 90-day pilot target is <strong>eight newly activated merchants</strong>. The following funnel is illustrative — a working hypothesis to test, not an established benchmark.</p>
+<div class="scrollx"><table>
+<tr><th>Funnel stage</th><th class="num">Volume</th><th class="num">Conversion from previous</th></tr>
+<tr><td>Researched target accounts</td><td class="num">1,000</td><td class="num">—</td></tr>
+<tr><td>Meaningfully engaged accounts</td><td class="num">350</td><td class="num">35%</td></tr>
+<tr><td>Discovery meetings completed</td><td class="num">140</td><td class="num">40%</td></tr>
+<tr><td>Qualified opportunities</td><td class="num">84</td><td class="num">60%</td></tr>
+<tr><td>Solution/technical validation</td><td class="num">50</td><td class="num">60%</td></tr>
+<tr><td>Commercial proposals</td><td class="num">30</td><td class="num">60%</td></tr>
+<tr><td>New activated merchants</td><td class="num">9</td><td class="num">30%</td></tr>
+</table></div>
+<p>The funnel mathematically supports approximately nine wins, providing some headroom against the eight-merchant pilot target. Actual results would depend on sales-cycle length, account quality, team capacity and activation delays.</p>
+
+<h3>Why work backwards?</h3>
+<p>If the target is missed, the funnel helps identify the issue: low engagement points to weak account selection or messaging; meetings without qualification point to targeting or discovery issues; proposals without closes point to value justification, pricing or competition; closed deals without activation point to onboarding problems. The solution should match the bottleneck — increasing outreach volume is not always the right response.</p>
+<div class="principle">The table counts <b>accounts at each stage</b>, not necessarily unique people contacted. I would also report stage conversion by cohort and acquisition channel so strong performance in one segment doesn't conceal weak performance in another.</div>
+
+<hr>
+
+<h2><span class="no">08</span>Build a More Reliable Sales Forecast</h2>
+<p>A pipeline is useful for forecasting only when opportunity data is current and stage progression reflects evidence. I would maintain three complementary views.</p>
+<ul>
+  <li><strong>A. Commit forecast</strong> — strong evidence of closing within the period: buyer confirmation, completed decision steps, commercial alignment, a credible close date. A salesperson's confidence alone is insufficient.</li>
+  <li><strong>B. Best-case forecast</strong> — could close within the period but still has meaningful unresolved risks (pending technical validation, budget approval, stakeholder alignment).</li>
+  <li><strong>C. Pipeline forecast</strong> — all qualified opportunities expected to close within the period, including deals not yet mature for commit.</li>
+</ul>
+
+<h3>Weighted forecast formula</h3>
+<div class="formula">Weighted expected revenue = Σ (deal's expected revenue × probability of closing within the forecast period)</div>
+<p>The key phrase is <em>within the forecast period</em>. A deal that may close eventually should not be counted as though it will certainly close this month.</p>
+
+<h3>Illustrative example</h3>
+<div class="scrollx"><table>
+<tr><th>Opportunity</th><th class="num">Expected revenue (assumed)</th><th class="num">Close probability</th></tr>
+<tr><td>Deal A</td><td class="num">₹10 lakh</td><td class="num">80%</td></tr>
+<tr><td>Deal B</td><td class="num">₹8 lakh</td><td class="num">50%</td></tr>
+<tr><td>Deal C</td><td class="num">₹5 lakh</td><td class="num">20%</td></tr>
+</table></div>
+<p>Deal A: ₹10L × 80% = ₹8L · Deal B: ₹8L × 50% = ₹4L · Deal C: ₹5L × 20% = ₹1L</p>
+<div class="formula">Total weighted expected revenue = <span class="result">₹13 lakh</span></div>
+<p>These values are purely illustrative and are not Razorpay deal values or pricing estimates. The example shows the method, not a real company forecast.</p>
+
+<h3>How I would improve forecast quality</h3>
+<p>I would review stage age (has the opportunity stalled?), close-date movement (has it slipped repeatedly?), buyer engagement, unresolved blockers (security, integration, legal, commercial), whether a specific next step is agreed, and historical calibration of stage probabilities against actual outcomes. Until sufficient data exists, probabilities should be labelled as provisional assumptions.</p>
+
+<hr>
+
+<h2><span class="no">09</span>Connect Merchant Acquisition to Payment Potential</h2>
+<p>For a payments business, the number of signed customers alone does not tell the complete story. Two merchants may both be activated but generate very different transaction volumes.</p>
+
+<h3>Illustrative merchant-volume model</h3>
+<p>Assume the pilot activates eight merchants, each eventually processing an average of ₹25 lakh per month:</p>
+<div class="formula">8 merchants × ₹25 lakh = <span class="result">₹2 crore in monthly payment volume</span></div>
+<p>This is a planning scenario, not a guaranteed result. Actual volumes may be lower or higher, and merchants may ramp at different speeds.</p>
+
+<h3>Track three distinct outcomes</h3>
+<ol>
+  <li><strong>Acquisition outcome</strong> — how many qualified merchants have been won?</li>
+  <li><strong>Activation outcome</strong> — how many have completed onboarding and started processing?</li>
+  <li><strong>Business outcome</strong> — how much actual payment volume, compared with the expected use case?</li>
+</ol>
+<p>I would monitor both expected and actual volumes at 30, 60 and 90 days after activation.</p>
+<div class="principle">Merchant payment volume is <b>not the same</b> as Razorpay's recognized revenue — actual economics depend on commercial terms, payment methods, pricing and costs. Any financial model for a real decision should distinguish gross payment volume from revenue and contribution.</div>
+
+<hr>
+
+<h2><span class="no">10</span>A Practical 90-Day Execution Plan</h2>
+<div class="scrollx"><table>
+<tr><th>Period</th><th>Priorities</th><th>Deliverable</th></tr>
+<tr><td>Days 1–30<br><em>Build the foundation</em></td><td>Align on segment and ICP; build and QA the account list; establish funnel definitions; set up CRM dashboard; develop segment-specific messaging; establish baseline</td><td>Researched account list, documented funnel, initial dashboard, clear process definitions</td></tr>
+<tr><td>Days 31–60<br><em>Launch and learn</em></td><td>Start outbound and qualify inbound; test messaging by segment; review discovery quality; track objections and blockers; run weekly pipeline reviews</td><td>Initial conversion data, objection log, evidence on winning segments/messages</td></tr>
+<tr><td>Days 61–90<br><em>Optimize and systemize</em></td><td>Reallocate to best-performing segment/channel; improve weakest funnel stage; audit stale opportunities; review activation and payment volumes; compare forecast to actuals</td><td>Performance review, calibrated funnel model, updated forecast, scaling recommendation</td></tr>
+</table></div>
+
+<h3>Illustrative pilot scorecard</h3>
+<div class="scrollx"><table>
+<tr><th>Metric</th><th>Initial target or rule</th></tr>
+<tr><td>Researched target accounts</td><td>1,000 over 90 days</td></tr>
+<tr><td>New activated merchants</td><td>8</td></tr>
+<tr><td>Funnel conversion</td><td>Measure actual conversion against the illustrative model</td></tr>
+<tr><td>Forecast accuracy</td><td>Compare forecast with actual outcomes at the same cut-off date</td></tr>
+<tr><td>CRM hygiene</td><td>Every active opportunity has an owner, next step and expected close date</td></tr>
+<tr><td>Merchant activation</td><td>Track separately from signed agreements</td></tr>
+<tr><td>Payment volume</td><td>Compare actual volume with each merchant's expected use case</td></tr>
+</table></div>
+<p>The numerical activity and acquisition targets are proposed pilot assumptions, to be confirmed against actual sales capacity and sales-cycle duration before treating them as operating commitments.</p>
+
+<hr>
+
+<h2><span class="no">11</span>Risks, Decision Rules and Final Recommendation</h2>
+<div class="scrollx"><table>
+<tr><th>Risk</th><th>My response</th></tr>
+<tr><td>High activity but low-quality leads</td><td>Tighten ICP criteria, inspect disqualification reasons, prioritize stronger-fit accounts.</td></tr>
+<tr><td>Meetings don't convert into qualified opportunities</td><td>Improve discovery and qualification criteria.</td></tr>
+<tr><td>Deals stuck in technical/commercial stages</td><td>Identify the specific blocker, involve the internal owner early, agree a dated next step.</td></tr>
+<tr><td>Forecasts consistently overestimate wins</td><td>Review historical stage conversion, close-date slippage and commit-opportunity evidence.</td></tr>
+<tr><td>Signed merchants don't activate or process expected volume</td><td>Separate acquisition and activation metrics; review onboarding friction.</td></tr>
+<tr><td>A successful pilot cannot scale</td><td>Confirm lead quality, sales capacity, technical support and onboarding capacity before expanding.</td></tr>
+</table></div>
+
+<h3>My decision framework</h3>
+<p>At the end of the pilot, three questions decide what happens next: <strong>Scale</strong> — are opportunities converting, merchants activating, and unit economics showing promise? <strong>Optimize</strong> — is there clear demand, but one stage or constraint limiting results? <strong>Reassess</strong> — are the segments, targeting or value proposition failing to produce enough qualified demand despite disciplined execution? The answer should be based on observed results, not on whether the team completed its planned activities.</p>
+
+<div class="principle" style="text-align:center;font-size:16px;padding:26px 24px">
+<b>The central principle:</b><br><br>
+Build a pipeline the business can explain, a forecast it can defend, and an acquisition process it can improve continuously.
+</div>
+
+<p>I would recommend a focused 90-day pilot before expanding the acquisition model across additional merchant segments. The most important output would not be a dashboard alone — it would be a repeatable decision-making system that connects prospect selection, sales execution, funnel performance, forecasting and merchant outcomes.</p>
+
+<div class="refs">
+<b style="display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--yellow-ink);margin-bottom:10px">References</b>
+<ol>
+  <li><a href="https://razorpay.com/payment-gateway/" target="_blank" rel="noopener">Razorpay — Payment Gateway</a></li>
+  <li><a href="https://razorpay.com/accept-payments/" target="_blank" rel="noopener">Razorpay — Accept Payments</a></li>
+  <li><a href="https://razorpay.com/pricing/" target="_blank" rel="noopener">Razorpay — Pricing</a></li>
+</ol>
+</div>
+
+<p class="closing-note">This is an independent hypothetical strategy case, not an assessment of Razorpay's internal sales performance. The proposed mid-market focus, account list, channel allocation, ICP weights, funnel conversions, pilot target, merchant-volume example and execution plan are all illustrative. No access to Razorpay's internal CRM, sales pipeline, customer-level transaction data, conversion rates or commercial agreements was assumed.</p>
+
+</div>
+</div>
+
+<section class="cta-footer">
+<div class="wrap">
+  <h3>Give me a problem like this one.</h3>
+  <p>This is how I think through pipeline math and forecasting — funnel built backwards from the target, assumptions disclosed.</p>
+  <a class="btn" href="../index.html#contact">Let's talk →</a>
+</div>
+</section>
+
+</body>
+</html>
