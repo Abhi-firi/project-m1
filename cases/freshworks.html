@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent hypothetical case study: how Abhishek Sharma would grow revenue from existing customers at Freshworks, using NRR, ICE prioritisation and a controlled pilot.">
+<meta name="theme-color" content="#080b12">
+<title>Case Study — Growing Revenue from Existing Customers at Freshworks | Abhishek Sharma</title>
+<style>
+:root{
+  --cream:#FAF9F2; --ink:#161A33; --slate:#5C6180; --line:rgba(19,27,65,.12);
+  --navy:#131B41; --navy-panel:#1B2454; --text-dark:#F6F6F1; --slate-dark:#AEB3D4; --line-dark:rgba(246,246,241,.14);
+  --yellow:#E8ED6C; --yellow-ink:#6B6E16;
+  --shadow:0 14px 40px rgba(19,27,65,.08); --r:18px; --max:820px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased;letter-spacing:-.003em}
+a{color:inherit}
+.wrap{width:min(calc(100% - 48px),var(--max));margin:auto}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:30;background:rgba(19,27,65,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line-dark);color:var(--text-dark)}
+.navin{width:min(calc(100% - 48px),1180px);margin:auto;height:72px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;letter-spacing:-.01em;text-decoration:none}.brand span{color:var(--yellow)}
+.back{font-size:13.5px;font-weight:700;color:var(--yellow);text-decoration:none;display:flex;align-items:center;gap:6px}
+.back:hover{color:var(--text-dark)}
+
+/* header block */
+.hero{background:var(--navy);color:var(--text-dark);padding:64px 0 54px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.045;mix-blend-mode:overlay;background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22120%22 height=%22120%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>')}
+.hero .wrap{position:relative}
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tag{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--yellow);border:1px solid var(--line-dark);padding:6px 11px;border-radius:999px}
+.tag.type{color:var(--navy);background:var(--yellow);border-color:var(--yellow)}
+.hero h1{font-size:clamp(28px,4.4vw,42px);line-height:1.12;letter-spacing:-.03em;font-weight:800;margin:0 0 16px;max-width:720px}
+.hero .meta{color:var(--slate-dark);font-size:14.5px;max-width:680px}
+
+/* disclaimer callout */
+.callout{background:#fff;border:1.5px solid var(--yellow-ink);border-left:5px solid var(--yellow-ink);border-radius:12px;padding:20px 22px;margin:36px 0;box-shadow:var(--shadow)}
+.callout b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--yellow-ink);margin-bottom:8px}
+.callout p{margin:0 0 8px;font-size:14.5px;color:var(--slate)}
+.callout p:last-child{margin-bottom:0}
+.callout strong{color:var(--ink)}
+
+/* article body */
+.article{padding:54px 0 90px}
+.article h2{font-size:clamp(22px,3vw,28px);font-weight:800;letter-spacing:-.02em;margin:54px 0 10px;color:var(--navy);scroll-margin-top:90px}
+.article h2 .no{color:var(--yellow-ink);margin-right:10px}
+.article h3{font-size:16.5px;font-weight:750;margin:26px 0 10px;color:var(--ink)}
+.article p{margin:0 0 14px;color:#2a2f4d;font-size:15.5px}
+.article ul,.article ol{margin:0 0 16px;padding-left:22px;color:#2a2f4d;font-size:15.5px}
+.article li{margin-bottom:6px}
+.article hr{border:none;border-top:1px solid var(--line);margin:40px 0}
+
+.formula{background:var(--navy);color:var(--text-dark);border-radius:12px;padding:18px 20px;margin:18px 0;font-size:14.5px;font-weight:600;overflow-x:auto;white-space:nowrap}
+.formula .result{color:var(--yellow)}
+
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
+th{background:var(--navy-panel);color:var(--text-dark);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;font-weight:800}
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right}
+.scrollx{overflow-x:auto}
+
+.principle{background:var(--navy-panel);color:var(--text-dark);border-radius:14px;padding:20px 22px;margin:20px 0}
+.principle b{color:var(--yellow)}
+
+.refs{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 26px;margin-top:10px}
+.refs ol{margin:0;padding-left:20px}
+.refs a{color:var(--navy);font-weight:600;text-decoration:underline;text-decoration-color:var(--line)}
+
+.closing-note{font-style:italic;color:var(--slate);font-size:14px;border-top:1px solid var(--line);padding-top:20px;margin-top:30px}
+
+.cta-footer{background:var(--navy);color:var(--text-dark);padding:50px 0;text-align:center}
+.cta-footer h3{font-size:20px;margin:0 0 10px;font-weight:800}
+.cta-footer p{color:var(--slate-dark);margin:0 0 20px;font-size:14.5px}
+.cta-footer a.btn{display:inline-flex;background:var(--yellow);color:var(--navy);font-weight:800;font-size:14px;padding:13px 24px;border-radius:12px;text-decoration:none}
+
+@media (max-width:640px){.formula{white-space:normal}}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="navin">
+  <a class="brand" href="../index.html">ABHISHEK <span>SHARMA</span></a>
+  <a class="back" href="../index.html#cases">← Back to portfolio</a>
+</div></header>
+
+<section class="hero">
+<div class="wrap">
+  <div class="tagrow">
+    <span class="tag type">Independent hypothetical analysis</span>
+    <span class="tag">B2B SaaS Growth</span>
+    <span class="tag">Customer Expansion</span>
+    <span class="tag">Revenue Strategy</span>
+    <span class="tag">Experimentation</span>
+  </div>
+  <h1>How I Would Grow Revenue from Existing Customers at Freshworks</h1>
+  <p class="meta">Case study 3 of 6 in my "Proof of Thinking" series — demonstrating how I reason through growth problems using real frameworks, disclosed assumptions and no fabricated data.</p>
+</div>
+</section>
+
+<div class="article">
+<div class="wrap">
+
+<div class="callout">
+<b>Important Disclaimer</b>
+<p>This is an <strong>independent hypothetical case study</strong> based on publicly available information about Freshworks and general B2B SaaS growth principles. It is <strong>not affiliated with Freshworks</strong> and does not use its internal customer, revenue, product-usage or financial data.</p>
+<p><strong>All customer counts, conversion rates, revenue figures, targets, experiment results and financial scenarios in this case study are hypothetical assumptions created for demonstration and learning. They are not actual Freshworks results or forecasts.</strong></p>
+</div>
+
+<h2><span class="no">01</span>Company Context: What Does Freshworks Do?</h2>
+<p>Freshworks is a real software company that provides cloud-based business software for customer service, IT service management, sales and marketing.</p>
+<p>Its product portfolio includes:</p>
+<ul>
+  <li><strong>Freshdesk:</strong> Customer support and ticket management.</li>
+  <li><strong>Freshchat:</strong> Digital customer conversations and messaging.</li>
+  <li><strong>Freshcaller:</strong> Customer support through voice and calling.</li>
+  <li><strong>Freshservice:</strong> IT service management and internal employee support.</li>
+  <li><strong>Freshsales:</strong> Sales CRM and pipeline management.</li>
+</ul>
+<p>These products help businesses manage customer interactions, support operations, IT requests and sales workflows.</p>
+<p><em>Public reference: <a href="https://www.freshworks.com/products/" target="_blank" rel="noopener">Freshworks Products</a> · <a href="https://www.freshworks.com/products/what-is-freshworks/" target="_blank" rel="noopener">What is Freshworks?</a></em></p>
+
+<h3>What does Freshworks need for revenue growth?</h3>
+<p>As with other subscription-based software businesses, revenue can grow through three broad routes:</p>
+<ol>
+  <li><strong>New customer acquisition:</strong> Selling to businesses that do not already use the product.</li>
+  <li><strong>Customer expansion:</strong> Selling additional seats, higher plans or relevant products to existing customers.</li>
+  <li><strong>Customer retention:</strong> Preventing cancellations and downgrades.</li>
+</ol>
+<p>This case study focuses on the second route: <strong>growing revenue from existing customers without relying entirely on acquiring new customers.</strong></p>
+<p>The goal is not to assume that Freshworks currently has a specific revenue problem. The goal is to demonstrate how I would investigate an expansion opportunity, validate it with data and build a repeatable growth strategy.</p>
+
+<hr>
+
+<h2><span class="no">02</span>The Business Problem</h2>
+<h3>The hypothetical problem</h3>
+<p>Imagine that a group of existing Freshdesk customers continues paying for its current subscription but has not adopted other relevant products or expanded its existing usage.</p>
+<p>Some customers may have additional needs that Freshworks could serve. However, the business may not know:</p>
+<ul>
+  <li>Which customers have a genuine expansion opportunity.</li>
+  <li>Why those customers have not expanded.</li>
+  <li>Which product or upgrade is most relevant to each customer.</li>
+  <li>Which sales or customer-success approach would convert the opportunity into revenue.</li>
+</ul>
+<p>These are <strong>hypotheses to investigate</strong>, not established facts about Freshworks.</p>
+
+<h3>The business question</h3>
+<p><strong>How can Freshworks identify suitable existing customers, help them solve an additional business problem and generate profitable expansion revenue?</strong></p>
+
+<h3>My initial hypothesis</h3>
+<p>A targeted expansion strategy may work better than promoting additional products to every existing customer.</p>
+<p>I would identify customers with a clear unmet need, recommend a relevant solution, test the approach with a controlled pilot and scale only when the results justify it.</p>
+
+<hr>
+
+<h2><span class="no">03</span>Define Success Before Taking Action</h2>
+<p>Before building a campaign, I would define the business outcome.</p>
+
+<h3>Primary business metric: Net Revenue Retention (NRR)</h3>
+<p>NRR measures how much recurring revenue remains from an existing customer cohort after expansion, downgrades and cancellations.</p>
+<div class="formula">NRR = (Starting recurring revenue + Expansion revenue − Contraction revenue − Churned revenue) ÷ Starting recurring revenue × 100</div>
+<p>Where:</p>
+<ul>
+  <li><strong>Starting recurring revenue:</strong> Revenue from the customers at the beginning of the period.</li>
+  <li><strong>Expansion:</strong> Additional recurring revenue from upgrades, extra seats or additional products.</li>
+  <li><strong>Contraction:</strong> Revenue lost when customers downgrade.</li>
+  <li><strong>Churn:</strong> Revenue lost when customers cancel.</li>
+</ul>
+
+<p><strong>Example — entirely hypothetical:</strong></p>
+<div class="scrollx"><table>
+<tr><th>Revenue component</th><th class="num">Amount</th></tr>
+<tr><td>Starting recurring revenue</td><td class="num">$1,000,000</td></tr>
+<tr><td>Expansion revenue</td><td class="num">+$100,000</td></tr>
+<tr><td>Downgrades</td><td class="num">−$30,000</td></tr>
+<tr><td>Cancellations</td><td class="num">−$20,000</td></tr>
+<tr><td>Ending revenue from the same cohort</td><td class="num">$1,050,000</td></tr>
+</table></div>
+<div class="formula">NRR = $1,050,000 ÷ $1,000,000 × 100 = <span class="result">105%</span></div>
+<p>This means the existing customer cohort generates 5% more recurring revenue than it did at the start of the period.</p>
+<p>An NRR above 100% does not mean every customer expanded; a smaller group of expanding customers can offset losses elsewhere.</p>
+<p><strong>Important:</strong> New-customer revenue is excluded from NRR. Otherwise, new sales could hide weak retention or expansion.</p>
+<p><em>Reference: <a href="https://stripe.com/resources/more/net-revenue-retention" target="_blank" rel="noopener">Stripe — Net Revenue Retention</a></em></p>
+
+<h3>Metrics I would track</h3>
+<div class="scrollx"><table>
+<tr><th>Metric</th><th>What it tells me</th></tr>
+<tr><td>NRR</td><td>Is recurring revenue from existing customers growing?</td></tr>
+<tr><td>Expansion ARR</td><td>How much additional annualised recurring revenue was won?</td></tr>
+<tr><td>Expansion conversion rate</td><td>What percentage of qualified opportunities became paid expansions?</td></tr>
+<tr><td>Product adoption</td><td>Are customers actually using the solution they purchased?</td></tr>
+<tr><td>GRR</td><td>How much starting revenue remains after contraction and churn, excluding expansion?</td></tr>
+<tr><td>Customer complaints and churn</td><td>Is the expansion strategy damaging customer trust?</td></tr>
+</table></div>
+<p><strong>ARR</strong> means Annual Recurring Revenue. <strong>GRR</strong> means Gross Revenue Retention.</p>
+<p>I would not use NRR alone to judge a short experiment. NRR is a broader business-health metric; a pilot also needs near-term measures such as qualified opportunities, paid conversions and expansion revenue.</p>
+
+<hr>
+
+<h2><span class="no">04</span>Step One: Find the Right Customers</h2>
+<p>I would not start by emailing every Freshdesk customer.</p>
+<p>First, I would segment the customer base and look for evidence of a genuine additional need.</p>
+
+<h3>My initial target segment</h3>
+<p>For this hypothetical analysis, I would investigate existing Freshdesk customers that:</p>
+<ul>
+  <li>Have used the product long enough to establish a usage pattern.</li>
+  <li>Have stable adoption of their current product.</li>
+  <li>Are growing in support volume or adding new support channels.</li>
+  <li>Show a potential need for digital messaging or voice support.</li>
+  <li>Have no obvious unresolved product or service issue that should take priority.</li>
+</ul>
+<p>For example, a customer receiving increasing volumes of support requests through multiple channels might benefit from evaluating a complementary solution such as Freshchat or Freshcaller, depending on its actual needs.</p>
+<p>This is a potential fit, not an automatic recommendation.</p>
+
+<h3>What data would I examine?</h3>
+<p>I would combine four sources:</p>
+<ol>
+  <li><strong>CRM data:</strong> Current products, contract value, renewal dates, customer size and account history.</li>
+  <li><strong>Product usage:</strong> Active seats, feature adoption, ticket volume and channel usage, where available.</li>
+  <li><strong>Customer Success feedback:</strong> Complaints, satisfaction, renewal risks and known expansion opportunities.</li>
+  <li><strong>Customer conversations:</strong> Business priorities, workflow problems, budget and buying process.</li>
+</ol>
+
+<h3>The key question</h3>
+<p><strong>Which existing customers have a real problem that another Freshworks product or upgrade can solve?</strong></p>
+<p>I would exclude accounts with poor adoption, unresolved support issues or high churn risk from the initial expansion push until those problems are addressed.</p>
+
+<hr>
+
+<h2><span class="no">05</span>Step Two: Diagnose Why Customers Have Not Expanded</h2>
+<p>A lack of expansion does not automatically mean a lack of interest.</p>
+<p>I would investigate the reason before choosing a solution.</p>
+
+<h3>My research plan</h3>
+<ul>
+  <li>Interview approximately 10–15 selected customers across different account types.</li>
+  <li>Speak with Customer Success and Sales teams.</li>
+  <li>Review usage, renewal and expansion history.</li>
+  <li>Compare customers who expanded with similar customers who did not.</li>
+</ul>
+<p>The 10–15 interviews are a starting point for qualitative discovery, not a statistically representative sample.</p>
+
+<h3>Questions I would ask customers</h3>
+<ol>
+  <li>What is your biggest support-workflow challenge today?</li>
+  <li>Which tasks still require manual effort?</li>
+  <li>What happens when support volume increases?</li>
+  <li>Which tools or processes are you currently using?</li>
+  <li>What prevents you from solving this problem today?</li>
+  <li>What would you need to see before investing in another solution?</li>
+</ol>
+
+<h3>Possible findings and responses</h3>
+<div class="scrollx"><table>
+<tr><th>Possible finding</th><th>Response</th></tr>
+<tr><td>Customer does not know a relevant product exists</td><td>Improve education and product discovery.</td></tr>
+<tr><td>Customer understands the product but sees no clear value</td><td>Demonstrate a relevant use case and measurable business outcome.</td></tr>
+<tr><td>Customer has a need but adoption of the current product is weak</td><td>Fix onboarding and product adoption first.</td></tr>
+<tr><td>Customer wants the solution but implementation seems difficult</td><td>Provide a clear implementation plan and support.</td></tr>
+<tr><td>Customer has no relevant need or budget</td><td>Do not force an expansion. Revisit when circumstances change.</td></tr>
+</table></div>
+<p>These are possible outcomes of the research, not findings already established about Freshworks.</p>
+
+<div class="principle"><b>The principle:</b> Diagnose the barrier before prescribing the solution. A sales campaign cannot fix a product-fit problem, poor customer experience or lack of genuine demand.</div>
+
+<hr>
+
+<h2><span class="no">06</span>Step Three: Choose the Best Growth Opportunity</h2>
+<p>Once I understand the customer problem, I would compare three expansion options.</p>
+<div class="scrollx"><table>
+<tr><th>Growth lever</th><th>Example</th><th>When I would use it</th></tr>
+<tr><td>Seat expansion</td><td>More employees use the existing product</td><td>More people need access to the current workflow.</td></tr>
+<tr><td>Plan upgrade</td><td>Customer moves to a higher tier</td><td>The customer needs specific capabilities unavailable in the current plan.</td></tr>
+<tr><td>Cross-sell</td><td>Customer adopts a relevant additional product</td><td>A second product solves a separate, proven customer need.</td></tr>
+</table></div>
+<p>I would not assume that cross-selling is automatically the best choice. I would select the lever with the strongest combination of customer fit, commercial value and feasibility.</p>
+
+<h3>Framework: ICE prioritisation</h3>
+<p>ICE helps compare opportunities using three scores.</p>
+<div class="formula">ICE score = Impact × Confidence ÷ Effort</div>
+<p>For a simple portfolio exercise, I would score each factor from 1 to 10.</p>
+<ul>
+  <li><strong>Impact:</strong> How much business value could this create?</li>
+  <li><strong>Confidence:</strong> How strong is the evidence that it will work?</li>
+  <li><strong>Effort:</strong> How much time and resource will it require?</li>
+</ul>
+<p>Hypothetical prioritisation:</p>
+<div class="scrollx"><table>
+<tr><th>Opportunity</th><th class="num">Impact</th><th class="num">Confidence</th><th class="num">Effort</th><th class="num">ICE score</th></tr>
+<tr><td>Relevant cross-sell</td><td class="num">8</td><td class="num">6</td><td class="num">4</td><td class="num">12.0</td></tr>
+<tr><td>Seat expansion</td><td class="num">6</td><td class="num">7</td><td class="num">3</td><td class="num">14.0</td></tr>
+<tr><td>Plan upgrade</td><td class="num">7</td><td class="num">5</td><td class="num">4</td><td class="num">8.75</td></tr>
+</table></div>
+<p>These scores are illustrative, subjective inputs — not research findings.</p>
+<p>In this example, seat expansion ranks first because it has a higher ICE score. I would still validate whether there is a genuine customer need and enough commercial value before choosing it.</p>
+<div class="principle"><b>Decision:</b> Prioritise the highest-scoring opportunity that has credible customer evidence, rather than blindly following the framework.</div>
+
+<hr>
+
+<h2><span class="no">07</span>Step Four: Build One Focused Growth Experiment</h2>
+<p>After prioritisation, I would test one clearly defined expansion motion before scaling it.</p>
+<p>For illustration, assume research identifies a segment of existing customers that could benefit from adding a complementary support channel.</p>
+
+<h3>Experiment hypothesis</h3>
+<p>"If we identify existing customers with a proven need for an additional support channel and demonstrate a relevant solution, we may increase paid expansion compared with the current approach."</p>
+
+<h3>Experiment design</h3>
+<p><strong>Hypothetical pilot:</strong> 120 eligible customer accounts.</p>
+<ul>
+  <li><strong>Treatment group:</strong> 60 accounts receive the new targeted approach.</li>
+  <li><strong>Control group:</strong> 60 comparable accounts continue with the existing approach.</li>
+</ul>
+<p>Randomisation should happen at the <strong>account level</strong>, not the individual-contact level, to reduce the risk of people from the same company receiving different treatments.</p>
+<p>If the eligible account pool is too small, I would run a smaller directional pilot and avoid claiming statistical certainty.</p>
+
+<h3>What does the treatment group receive?</h3>
+<ol>
+  <li>A personalised message tied to the customer's identified problem.</li>
+  <li>A short discovery conversation.</li>
+  <li>A relevant product demonstration.</li>
+  <li>A trial or evaluation only if it fits the customer's needs.</li>
+  <li>A follow-up addressing the customer's business case and implementation concerns.</li>
+</ol>
+<p>The control group continues with the existing sales or customer-success process. I would not deliberately withhold essential support from any customer.</p>
+
+<h3>What would I measure?</h3>
+<p><strong>Primary pilot metric:</strong></p>
+<div class="formula">Expansion conversion rate = Paid expansion wins ÷ Qualified accounts approached × 100</div>
+<p>I would also track:</p>
+<ul>
+  <li>Expansion ARR per eligible account.</li>
+  <li>Demo-to-trial conversion.</li>
+  <li>Trial-to-paid conversion.</li>
+  <li>Time from first contact to paid expansion.</li>
+  <li>Discounting and sales effort.</li>
+  <li>Customer complaints, churn and product adoption.</li>
+</ul>
+<p>I would predefine eligibility, the measurement window and the decision criteria before the experiment begins.</p>
+<p>A 6–8 week period could be used for an initial engagement and opportunity-creation readout, but paid conversions may require longer. I would follow the cohort through the normal sales cycle before making a final revenue decision.</p>
+
+<h3>Example of interpreting the results</h3>
+<p>Assume the following entirely hypothetical results:</p>
+<div class="scrollx"><table>
+<tr><th>Metric</th><th class="num">Control</th><th class="num">Treatment</th></tr>
+<tr><td>Eligible accounts</td><td class="num">60</td><td class="num">60</td></tr>
+<tr><td>Paid expansion wins</td><td class="num">6</td><td class="num">9</td></tr>
+<tr><td>Conversion rate</td><td class="num">10%</td><td class="num">15%</td></tr>
+</table></div>
+<p>Absolute improvement = 15% − 10% = <strong>5 percentage points</strong>.</p>
+<p>Relative improvement = (15% − 10%) ÷ 10% × 100 = <strong>50%</strong>.</p>
+<p>The treatment group has a higher observed conversion rate in this example.</p>
+<p>However, this alone does not prove that the strategy works. I would check sample size, uncertainty, account comparability, revenue per win and potential negative customer outcomes before recommending a full rollout.</p>
+
+<hr>
+
+<h2><span class="no">08</span>Step Five: Calculate the Commercial Opportunity</h2>
+<p>A growth idea should be connected to a revenue model.</p>
+<p>I would estimate the opportunity using explicit assumptions rather than presenting a revenue target without explaining where it came from.</p>
+
+<h3>Formula</h3>
+<div class="formula">Expected expansion ARR = Eligible accounts × Opportunity rate × Win rate × Average expansion ARR per win</div>
+
+<h3>Hypothetical planning scenario</h3>
+<p>Assume:</p>
+<ul>
+  <li>Eligible accounts: 500</li>
+  <li>Accounts with a qualified opportunity: 30%</li>
+  <li>Win rate on qualified opportunities: 25%</li>
+  <li>Average expansion ARR per win: $8,000</li>
+</ul>
+<p>Calculation:</p>
+<ul>
+  <li>Qualified opportunities = 500 × 30% = 150</li>
+  <li>Expected wins = 150 × 25% = 37.5</li>
+  <li>Expected gross expansion ARR = 37.5 × $8,000 = <strong>$300,000</strong></li>
+</ul>
+<p>The 37.5 wins are an expected-value estimate, not a possible literal number of customers in a completed campaign.</p>
+<p>This $300,000 is a simplified <strong>gross expansion ARR scenario</strong>, not net profit, recognised revenue or a Freshworks forecast. It excludes discounts, churn, contraction, implementation costs and sales/customer-success costs.</p>
+
+<h3>How I would improve the model</h3>
+<p>I would create three scenarios:</p>
+<ul>
+  <li><strong>Downside:</strong> Lower opportunity rate, win rate or average contract value.</li>
+  <li><strong>Base:</strong> Best estimate supported by available customer and sales data.</li>
+  <li><strong>Upside:</strong> Better conversion or higher expansion value, supported by evidence.</li>
+</ul>
+<p>I would then calculate the expected gross profit and compare it with the incremental cost of running the strategy. This prevents a large-looking revenue number from hiding poor economics.</p>
+
+<hr>
+
+<h2><span class="no">09</span>Step Six: Decide Whether to Scale, Change or Stop</h2>
+<p>The experiment is useful only if the results influence the next decision. I would establish decision rules before launch.</p>
+
+<h3>If the experiment performs well</h3>
+<ul>
+  <li>Verify that the result is not driven by one unusually large deal.</li>
+  <li>Check revenue, margins, discounting and customer outcomes.</li>
+  <li>Confirm that the conversion improvement is credible.</li>
+  <li>Expand gradually to similar customer segments.</li>
+  <li>Monitor results as the campaign scales.</li>
+</ul>
+<h3>If engagement is high but paid conversion is low</h3>
+<p>Investigate pricing, product fit, buying authority, implementation concerns and sales execution.</p>
+<h3>If product adoption is low</h3>
+<p>Prioritise onboarding and customer value before pushing additional products.</p>
+<h3>If expansion revenue rises but churn or complaints also rise</h3>
+<p>Pause the aggressive expansion motion and investigate whether customers are being sold products they do not need.</p>
+<h3>If the result is inconclusive</h3>
+<p>Review sample size, measurement quality and sales-cycle length. Improve the experiment or collect more evidence instead of declaring success or failure prematurely.</p>
+<div class="principle"><b>My principle:</b> Scale a repeatable customer outcome, not just a promising early metric.</div>
+
+<hr>
+
+<h2><span class="no">10</span>Step Seven: Execute the Plan</h2>
+<p>I would organise the work into a practical 90-day plan.</p>
+<div class="scrollx"><table>
+<tr><th>Period</th><th>Key activities</th><th>Deliverable</th></tr>
+<tr><td>Days 1–30</td><td>Review customer, revenue and product-usage data; interview customers; segment accounts</td><td>Validated problem and prioritised customer segment</td></tr>
+<tr><td>Days 31–60</td><td>Build the message, sales playbook and experiment; align Sales and Customer Success</td><td>Launch-ready pilot</td></tr>
+<tr><td>Days 61–90</td><td>Review engagement and conversion; follow paid outcomes; assess economics and risks</td><td>Scale, change or stop recommendation</td></tr>
+</table></div>
+<p>This timeline is illustrative. Actual timing would depend on access to data, team capacity, product complexity and the length of the sales cycle.</p>
+
+<h3>Ownership</h3>
+<ul>
+  <li><strong>Growth:</strong> Own the hypothesis, experiment design and measurement.</li>
+  <li><strong>Sales:</strong> Qualify opportunities and execute the expansion conversation.</li>
+  <li><strong>Customer Success:</strong> Validate customer needs, adoption and relationship risk.</li>
+  <li><strong>Product/Data:</strong> Provide usage analysis and reliable reporting.</li>
+  <li><strong>Finance:</strong> Validate ARR, discounts, margin and commercial assumptions.</li>
+</ul>
+<p>In a smaller team, one person may own multiple responsibilities.</p>
+
+<hr>
+
+<h2><span class="no">11</span>Key Risks and How I Would Manage Them</h2>
+<div class="scrollx"><table>
+<tr><th>Risk</th><th>How I would manage it</th></tr>
+<tr><td>Customers do not need another product</td><td>Qualify based on evidence and avoid unnecessary selling.</td></tr>
+<tr><td>Low adoption of the existing product</td><td>Improve customer outcomes before expanding.</td></tr>
+<tr><td>Small or biased experiment</td><td>Use comparable account groups and acknowledge uncertainty.</td></tr>
+<tr><td>Revenue is overstated</td><td>Separate gross expansion ARR from net impact and profit.</td></tr>
+<tr><td>Discounts create unprofitable wins</td><td>Track discounting, margin and payback.</td></tr>
+<tr><td>Results do not repeat at scale</td><td>Roll out gradually and monitor segment-level performance.</td></tr>
+<tr><td>Sales activity damages trust</td><td>Monitor complaints, retention and customer feedback.</td></tr>
+</table></div>
+<p>One important distinction: existing-customer expansion may reduce some acquisition effort, but it is not automatically cheaper or more profitable. The economics must be measured.</p>
+
+<hr>
+
+<h2><span class="no">12</span>Final Recommendation</h2>
+<p>I would not begin by launching a broad cross-sell campaign or setting an arbitrary NRR target.</p>
+<p>I would first identify a customer segment with a credible expansion opportunity, understand the reason for the unmet need, select the most relevant growth lever and test it against the current approach.</p>
+<p>If the experiment produces credible incremental expansion revenue without damaging retention or customer outcomes, I would scale it gradually. If it fails, I would use the evidence to change the targeting, offer or customer journey.</p>
+
+<div class="principle" style="text-align:center;font-size:16px;padding:26px 24px">
+<b>The overall growth loop is:</b><br><br>
+Identify → Diagnose → Prioritise → Experiment → Measure → Decide → Scale
+</div>
+
+<p>My objective would be to build a repeatable customer-expansion system that creates genuine customer value and measurable, profitable revenue growth — not simply to sell more products to existing customers.</p>
+
+<div class="refs">
+<b style="display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--yellow-ink);margin-bottom:10px">References</b>
+<ol>
+  <li><a href="https://www.freshworks.com/products/" target="_blank" rel="noopener">Freshworks — Official product portfolio</a></li>
+  <li><a href="https://www.freshworks.com/products/what-is-freshworks/" target="_blank" rel="noopener">Freshworks — Company and product overview</a></li>
+  <li><a href="https://stripe.com/resources/more/net-revenue-retention" target="_blank" rel="noopener">Stripe — Net Revenue Retention: Definition and Formula</a></li>
+  <li><a href="https://stripe.com/resources/more/saas-revenue-forecasting" target="_blank" rel="noopener">Stripe — SaaS Revenue Forecasting and Key Metrics</a></li>
+</ol>
+</div>
+
+<p class="closing-note">This case study is an independent hypothetical work sample. All proposed strategies, numerical examples, experiment outcomes and targets are illustrative assumptions, not actual Freshworks data or results.</p>
+
+</div>
+</div>
+
+<section class="cta-footer">
+<div class="wrap">
+  <h3>Give me a problem like this one.</h3>
+  <p>This is how I think through a growth problem end to end — assumptions disclosed, math shown, decision rules set before the result.</p>
+  <a class="btn" href="../index.html#contact">Let's talk →</a>
+</div>
+</section>
+
+</body>
+</html>
